@@ -10,11 +10,11 @@ module.exports =function check(str, bracketsConfig) {
   const objKey = Object.keys(objBrackets)
   let stack = [];
 
-  str.forEach((el) => {
-    if (stack[stack.length - 1] === el && objKey.includes(el)) { stack.pop() }
-    else if (objValues.includes(el)) { stack.push(el) }
+  for(let i = 0; i< str.length;i++){
+    if (stack[stack.length - 1] === str[i] && objKey.includes(str[i])) { stack.pop() }
+    else if (objValues.includes(str[i])) { stack.push(str[i]) }
     else if (stack.length === 0) { return false }
-    else if (objBrackets[el] === stack[stack.length - 1]) { stack.pop() }
-  })
+    else if (objBrackets[str[i]] === stack[stack.length - 1]) { stack.pop() }
+  }
   return stack.length === 0
 }
